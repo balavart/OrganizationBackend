@@ -26,22 +26,22 @@ CREATE TABLE IF NOT EXISTS office (
 
 CREATE TABLE IF NOT EXISTS document_type (
   id INT NOT NULL AUTO_INCREMENT,
-  number CHAR(10) NULL,
-  date DATE NULL,
+  name VARCHAR(100) NULL,
+  code CHAR(3) NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS document (
   id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(100) NULL,
-  code CHAR(3) NULL,
+  number CHAR(10) NULL,
+  date DATE NULL,
   document_type_id INT NULL,
   PRIMARY KEY (id),
   CONSTRAINT fk_document_type_id FOREIGN KEY (document_type_id)
     REFERENCES document_type (id)
     ON DELETE CASCADE
     ON UPDATE NO ACTION);
-  CREATE INDEX idx_ocument_type_id ON document (document_type_id ASC);
+  CREATE INDEX idx_document_type_id ON document (document_type_id ASC);
 
 CREATE TABLE IF NOT EXISTS citizenship (
   id INT NOT NULL AUTO_INCREMENT,

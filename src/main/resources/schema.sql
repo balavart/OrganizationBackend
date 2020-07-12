@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS organization (
   id INT NOT NULL AUTO_INCREMENT,
   version INT NOT NULL DEFAULT 0,
-  name VARCHAR(50) NOT NULL,
-  full_name VARCHAR(100) NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  full_name VARCHAR(200) NOT NULL,
   inn VARCHAR(30) NOT NULL UNIQUE,
   kpp VARCHAR(30) NOT NULL,
-  address VARCHAR(100) NOT NULL,
+  address VARCHAR(200) NOT NULL,
   phone_number VARCHAR(30) NULL,
   is_active BOOL NULL,
   PRIMARY KEY (id)
@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS office (
   id INT NOT NULL AUTO_INCREMENT,
   version INT NOT NULL DEFAULT 0,
   organization_id INT NOT NULL,
-  name VARCHAR(50) NOT NULL,
-  address VARCHAR(100) NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  address VARCHAR(200) NOT NULL,
   phone_number VARCHAR(30) NULL,
   is_active BOOL NULL,
   PRIMARY KEY (id),
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS document_type (
   id INT NOT NULL AUTO_INCREMENT,
   version INT NOT NULL DEFAULT 0,
   name VARCHAR(100) NULL,
-  code CHAR(3) NULL UNIQUE,
+  code CHAR(4) NULL UNIQUE,
   PRIMARY KEY (id)
 );
 
@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS user (
   first_name VARCHAR(50) NOT NULL,
   second_name VARCHAR(50) NULL,
   middle_name VARCHAR(50) NULL,
-  position VARCHAR(100) NOT NULL,
+  position VARCHAR(150) NOT NULL,
   phone_number VARCHAR(30) NULL,
-  document_id INT NULL,
-  citizenship_id INT NULL,
+  document_id INT NOT NULL,
+  citizenship_id INT NOT NULL,
   is_identified BOOL NULL,
   PRIMARY KEY (id),
   CONSTRAINT fk_office_id FOREIGN KEY (office_id)
